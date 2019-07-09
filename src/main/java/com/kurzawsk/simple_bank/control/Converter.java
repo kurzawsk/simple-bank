@@ -1,9 +1,9 @@
 package com.kurzawsk.simple_bank.control;
 
 
-public interface Converter<DTO, DOMAIN> {
+public interface Converter<T, D> {
 
-    DOMAIN dtoToDomain(DTO dto);
+    D dtoToDomain(T dto);
 
-    DTO domainToDto(DOMAIN domain);
+    T domainToDto(D domain);
 }

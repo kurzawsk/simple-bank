@@ -16,6 +16,7 @@ import java.util.concurrent.locks.Lock;
 public class TransferService {
 
     private static final int TRANSFER_LOCK_AWAIT_TIMEOUT = 5000;
+    private static final String NOT_EXIST_SUFFIX = " does not exist";
     private final AccountRepository accountRepository;
     private final TransferRepository transferRepository;
 
@@ -27,8 +28,11 @@ public class TransferService {
 
     public TransferDTO transfer(TransferRequestDTO transferRequestDTO) throws InterruptedException {
         validateAccounts(transferRequestDTO.getSourceAccountId(), transferRequestDTO.getTargetAccountId());
-        Account source = accountRepository.find(transferRequestDTO.getSourceAccountId()).get();
-        Account target = accountRepository.find(transferRequestDTO.getTargetAccountId()).get();
+        Account source = accountRepository
+                .find(transferRequestDTO.getSourceAccountId())
+                .orElseThrow(() -> new NotFoundException("Account with id: " + transferRequestDTO.getSourceAccountId() + NOT_EXIST_SUFFIX));
+        Account target = accountRepository.find(transferRequestDTO.getTargetAccountId())
+                .orElseThrow(() -> new NotFoundException("Account with id: " + transferRequestDTO.getTargetAccountId() + NOT_EXIST_SUFFIX));
 
         Lock lock1 = source.getId() > target.getId() ? source.getLock() : target.getLock();
         Lock lock2 = source.getId() > target.getId() ? target.getLock() : source.getLock();
@@ -57,7 +61,7 @@ public class TransferService {
 
     public TransferDTO find(long id) {
         return transferRepository.find(id)
-                .orElseThrow(() -> new NotFoundException("Transfer with id: " + id + " does not exist"));
+                .orElseThrow(() -> new NotFoundException("Transfer with id: " + id + NOT_EXIST_SUFFIX));
     }
 
     public List<TransferDTO> findByAccount(long accountId) {
