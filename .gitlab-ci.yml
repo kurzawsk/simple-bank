@@ -1,11 +1,16 @@
 stages:
   - test
-
-services:
-  - docker:dind
+  - build
 
 test:
   stage: test
   image: maven:3.6.0-jdk-8-alpine
   script:
     - mvn verify
+
+
+build:
+  stage: build
+  image: docker:stable-dind
+  script:
+    - docker build -t konkur89/simple-bank .

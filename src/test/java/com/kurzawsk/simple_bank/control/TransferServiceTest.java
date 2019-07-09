@@ -121,29 +121,29 @@ public class TransferServiceTest {
 
     private static Stream<Arguments> provideArgumentsForTransferFailure() {
         return Stream.of(
-                Arguments.of( new Account(1L,"o1",BigDecimal.valueOf(10),"1", new ReentrantLock()),
-                        new Account(2L,"o1",BigDecimal.valueOf(10),"2", new ReentrantLock()),
+                Arguments.of(new Account(1L, "o1", BigDecimal.valueOf(10), "1", new ReentrantLock()),
+                        new Account(2L, "o1", BigDecimal.valueOf(10), "2", new ReentrantLock()),
                         TransferRequestDTO.builder()
                                 .amount(BigDecimal.valueOf(5))
                                 .sourceAccountId(1L)
                                 .targetAccountId(1L)
                                 .build(), "The same source and target account"),
-                Arguments.of(new Account(1L,"o1",BigDecimal.valueOf(10),"1", new ReentrantLock()),
-                        new Account(2L,"o1",BigDecimal.valueOf(10),"2", new ReentrantLock()),
+                Arguments.of(new Account(1L, "o1", BigDecimal.valueOf(10), "1", new ReentrantLock()),
+                        new Account(2L, "o1", BigDecimal.valueOf(10), "2", new ReentrantLock()),
                         TransferRequestDTO.builder()
                                 .amount(BigDecimal.valueOf(11))
                                 .sourceAccountId(1L)
                                 .targetAccountId(2L)
                                 .build(), "Not enough resources to transfer"),
-                Arguments.of(new Account(1L,"o1",BigDecimal.valueOf(10),"1", new ReentrantLock()),
-                        new Account(2L,"o1",BigDecimal.valueOf(10),"2", new ReentrantLock()),
+                Arguments.of(new Account(1L, "o1", BigDecimal.valueOf(10), "1", new ReentrantLock()),
+                        new Account(2L, "o1", BigDecimal.valueOf(10), "2", new ReentrantLock()),
                         TransferRequestDTO.builder()
                                 .amount(BigDecimal.valueOf(1))
                                 .sourceAccountId(3L)
                                 .targetAccountId(2L)
                                 .build(), "Source account does not exist"),
-                Arguments.of(new Account(1L,"o1",BigDecimal.valueOf(10),"1", new ReentrantLock()),
-                        new Account(2L,"o1",BigDecimal.valueOf(10),"2", new ReentrantLock()),
+                Arguments.of(new Account(1L, "o1", BigDecimal.valueOf(10), "1", new ReentrantLock()),
+                        new Account(2L, "o1", BigDecimal.valueOf(10), "2", new ReentrantLock()),
                         TransferRequestDTO.builder()
                                 .amount(BigDecimal.valueOf(1))
                                 .sourceAccountId(2L)

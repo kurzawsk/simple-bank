@@ -1,14 +1,13 @@
 package com.kurzawsk.simple_bank.control.exception;
 
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.kurzawsk.simple_bank.entity.dto.ErrorDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.kurzawsk.simple_bank.entity.dto.ErrorDTO;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ExceptionMapper;
 
 public class DefaultExceptionMapper implements ExceptionMapper<Exception> {
 

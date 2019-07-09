@@ -20,7 +20,7 @@ public class Application {
     }
 
     public static void startService() {
-        server = new Server(8090);
+        server = new Server(8000);
         ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
         contextHandler.setContextPath("/");
 
@@ -34,18 +34,14 @@ public class Application {
         ServletHolder swagger = new ServletHolder(new DefaultServlet());
         swagger.setInitOrder(2);
 
-
         contextHandler.addServlet(apiServletHolder, "/" + API_VERSION + "/*");
         contextHandler.addServlet(swagger, "/*");
 
         server.setHandler(contextHandler);
         try {
             server.start();
-            server.join();
         } catch (Exception e) {
-            logger.error("Exception occurred during starting server", e);
-        } finally {
-            server.destroy();
+            logger.error("Exception occurred while starting server", e);
         }
     }
 

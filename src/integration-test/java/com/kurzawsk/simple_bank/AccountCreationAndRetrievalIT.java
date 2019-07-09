@@ -1,15 +1,14 @@
 package com.kurzawsk.simple_bank;
 
-import static io.restassured.RestAssured.given;
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.math.BigDecimal;
-
-import org.junit.jupiter.api.Test;
-
 import com.google.common.base.Strings;
 import com.kurzawsk.simple_bank.dto.AccountDTO;
 import com.kurzawsk.simple_bank.dto.ErrorDTO;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
+
+import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountCreationAndRetrievalIT extends BaseRestApiIT {
 

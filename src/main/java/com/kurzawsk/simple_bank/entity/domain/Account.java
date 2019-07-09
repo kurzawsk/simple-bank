@@ -1,6 +1,8 @@
 package com.kurzawsk.simple_bank.entity.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.concurrent.locks.Lock;
