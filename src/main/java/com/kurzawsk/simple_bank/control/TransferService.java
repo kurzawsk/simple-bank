@@ -79,10 +79,10 @@ public class TransferService {
     private void validateAccounts(long sourceId, long targetId) {
         List<String> messages = Lists.newArrayList();
         if (!accountRepository.find(sourceId).isPresent()) {
-            messages.add("Provided source account: " + sourceId + " does not exist");
+            messages.add("Provided source account: " + sourceId + NOT_EXIST_SUFFIX);
         }
         if (!accountRepository.find(targetId).isPresent()) {
-            messages.add("Provided target account: " + targetId + " does not exist");
+            messages.add("Provided target account: " + targetId + NOT_EXIST_SUFFIX);
         }
         if (sourceId == targetId) {
             messages.add("Cannot transfer money from/to the same account: " + sourceId);
