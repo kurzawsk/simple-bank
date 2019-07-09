@@ -10,6 +10,7 @@ test:
   image: maven:3.6.0-jdk-8-alpine
   script:
     - mvn verify
+    - ./sonar.sh
 
 
 build:
@@ -17,3 +18,5 @@ build:
   image: docker:stable
   script:
     - docker build -t konkur89/simple-bank .
+  only:
+    - master
